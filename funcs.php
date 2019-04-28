@@ -1,22 +1,25 @@
 <?php 
 
+function clear() {
+    global $db;
+    foreach($_POST as $key => $value) {
+        $_POST[$key] = mysqli_real_escape_string($db, $value);
+    }
+}
+
 function save(){
-    $str = $_POST['name'] . '|' . $_POST['text'] . '|' . date('Y-m-d H:i:s') . "\n***\n";
-    file_put_contents('gb.txt', $str, FILE_APPEND);
+   global $db;
+   clear();
+   extract($_POST);
+   $query = "INSERT INTO gb (name, text) VALUE ('$name', '$text')";
+   mysqli_query($db, $query);
 };
 
 function get_mess() {
-    return file_get_contents('gb.txt');
-}
-
-function array_mess($messages) {
-    $messages = explode("\n***\n", $messages);
-    array_pop($messages);
-    return array_reverse($messages);
-}
-
-function get_format_message($message) {
-    return explode('|', $message);
+   global $db;
+   $query = "SELECT * FROM gb ORDER BY id DESC";
+   $res = mysqli_query($db, $query);
+   return mysqli_fetch_all($res, MYSQLI_ASSOC);
 }
 
 function print_arr($arr) {

@@ -1,5 +1,6 @@
 <?php 
 header('Content-type: text/html; charset=utf-8');
+require_once 'connect.php';
 require_once 'funcs.php';
 
 if(!empty($_POST)) {
@@ -9,7 +10,6 @@ if(!empty($_POST)) {
 }
 
 $messages = get_mess();
-$messages = array_mess($messages);
 
 ?>
 <!DOCTYPE html>
@@ -40,17 +40,16 @@ $messages = array_mess($messages);
         <label for="text">Text</label><br/>
         <textarea name="text" id="text" cols="30" rows="10"></textarea>
     </p>
-    <button type="submit">Submiit</button>
+    <button type="submit">Submit</button>
     </form>
     <hr/>
 
     <?php if(!empty($messages)): ?>
-        <?php foreach($messages as $message): ?>
-            <?php $message = get_format_message($message); ?>
-            
+        <?php foreach($messages as $message):?>            
+
             <div class="messages">
-                <p>Author: <?=nl2br($message[0])?> | Date: <?=nl2br($message[2])?></p>
-                <div><?=nl2br(htmlspecialchars($message[1])) ?></div>
+                <p>Author: <?=nl2br($message['name']) ?> | Date: <?=nl2br($message['date'])?></p>
+                <div><?=nl2br(htmlspecialchars($message['text'])) ?></div>
             </div>
 
         <?php endforeach; ?>
