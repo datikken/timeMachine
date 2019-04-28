@@ -40,7 +40,7 @@ $messages = array_mess($messages);
         <label for="text">Text</label><br/>
         <textarea name="text" id="text" cols="30" rows="10"></textarea>
     </p>
-    <button type="submit">Submit</button>
+    <button type="submit">Submiit</button>
     </form>
     <hr/>
 
