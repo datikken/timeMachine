@@ -40,7 +40,7 @@ $messages = array_mess($messages);
         <label for="text">Text</label><br/>
         <textarea name="text" id="text" cols="30" rows="10"></textarea>
     </p>
-    <button type="submit">Submit</button>
+    <button type="submit">Submittt</button>
     </form>
     <hr/>
 
@@ -52,7 +52,7 @@ $messages = array_mess($messages);
                 <p>Author: <?=nl2br($message[0])?> | Date: <?=nl2br($message[2])?></p>
                 <div><?=nl2br(htmlspecialchars($message[1])) ?></div>
             </div>
-            
+
         <?php endforeach; ?>
     <?php endif; ?>
 </body>
